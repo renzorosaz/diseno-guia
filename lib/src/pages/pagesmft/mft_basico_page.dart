@@ -13,14 +13,26 @@ class InicioPage extends StatelessWidget {
          body: Container(
 
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/fondomft.png"),
-            fit: BoxFit.cover,
+             image: DecorationImage(
+             image: AssetImage("assets/fondomft.png"),
+              fit: BoxFit.cover,
           ),
+         ),
+           child: Column(
+               children: <Widget>[
+               _logo(),
+               _botonesNT(),
+               _botonIngre(),
+          ],
+        ) /* add child content here */,
         ),
-        child: Column(
-          children: <Widget>[
-            Container(
+      );
+
+  }
+
+  Widget _logo(){
+
+    return Container(
                 padding: EdgeInsets.symmetric(vertical:180.0 ),
               child: Column(
                 children: <Widget>[
@@ -31,8 +43,13 @@ class InicioPage extends StatelessWidget {
                   Text('MFT',style: estiloTitulo)
                 ],
               ),
-            ),
-            Container(
+            );
+
+  }
+
+       Widget _botonesNT(){
+
+    return Container(
               padding: EdgeInsets.symmetric(vertical:28.0),
              child: Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween ,
@@ -56,9 +73,12 @@ class InicioPage extends StatelessWidget {
                 )
               ],
             ),
-            ),
+            );
+      }
 
-            Container(
+      Widget _botonIngre(){
+
+    return  Container(
 
               margin: const EdgeInsets.all(30.0),
                   padding: const EdgeInsets.all(10.0),
@@ -83,14 +103,8 @@ class InicioPage extends StatelessWidget {
                     "Estoy listo!!",
                     style: TextStyle(fontSize: 30.0),
                ),
-            )
-
-          ],
-        ) /* add child content here */,
-      ),
+            );
+    }
 
 
-      );
-
-  }
 }
