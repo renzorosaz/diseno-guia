@@ -30,15 +30,14 @@ class BasicoPage extends StatelessWidget {
                       children: <Widget>[
                         Text('Gimnasio Recomendado',style: estiloTitulo),
                         SizedBox(height: 7.0,),
-                        Text(' AcrobataGYM ',style: subtitulo,),
-                        
+                        Text(' AcrobataGYM ',style: subtitulo),
                       ],
                     ),
-                    
+
                   ),
                   Icon(Icons.star, color: Colors.red,size:15.0),
                   Text('41',style: TextStyle(fontSize: 15.0)),
-                  
+
                 ],
               ),
             ),
