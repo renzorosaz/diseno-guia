@@ -1,6 +1,7 @@
+import 'package:disenos/src/pages/pagesmft/mft_iniciarsesion_page.dart';
 import 'package:flutter/material.dart';
 
-class InicioPage extends StatelessWidget {
+class InicioPageMFT extends StatelessWidget {
 
   final estiloTitulo= TextStyle(fontSize:18.0,fontWeight: FontWeight.bold, color: Colors.white);
   final estilosubTitulo= TextStyle(fontSize:18.0,color: Colors.red);
@@ -22,7 +23,7 @@ class InicioPage extends StatelessWidget {
                children: <Widget>[
                _logo(),
                _botonesNT(),
-               _botonIngre(),
+               _botonIngreFocusero(context),
           ],
         ) /* add child content here */,
         ),
@@ -30,7 +31,7 @@ class InicioPage extends StatelessWidget {
 
   }
 
-  Widget _logo(){
+    Widget _logo(){
 
     return Container(
                 padding: EdgeInsets.symmetric(vertical:180.0 ),
@@ -47,64 +48,84 @@ class InicioPage extends StatelessWidget {
 
   }
 
-       Widget _botonesNT(){
+     Widget _botonesNT(){
 
     return Container(
-              padding: EdgeInsets.symmetric(vertical:28.0),
-             child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween ,
-              children: <Widget>[
 
-              Column(
-                  children: <Widget>[
-                    Image.asset('assets/pera.png', width: 50.0,color:  Colors.green,),
+              padding: EdgeInsets.symmetric(vertical:25.0),
+              child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: <Widget>[
+                 Column(
+                   children: <Widget>[
+                     Image.asset('assets/pera.png', width: 50.0,color:  Colors.green,),
                     SizedBox(height: 5.0),
-                    Text('Nutricionsita',style: estiloTitulo),
-
+                     RaisedButton(
+                      elevation: 10,
+                        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                        color: Colors.white,
+                        textColor: Colors.greenAccent,
+                        child:Text('Nutricionista'),
+                        onPressed: (){ },
+                      ),
                   ],
-                ),
-
-              Column(
+                  ),
+                 Column(
                   children: <Widget>[
                     Image.asset('assets/pesa222.png', width: 50.0, color:  Colors.blueAccent,),
                     SizedBox(height: 5.0),
-                    Text('Trainer', style: estiloTitulo),
+                    RaisedButton(
+                      elevation: 10,
+                        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                        color: Colors.white,
+                        textColor: Colors.blueAccent,
+                        child:Text('Trainer'),
+                        onPressed: (){ },
+                    ),
+
                   ],
                 )
-              ],
-            ),
+            ],
+             ),
             );
       }
 
-      Widget _botonIngre(){
-
+     Widget _botonIngreFocusero(BuildContext context){
     return  Container(
+                //             <--- BoxDecoration here
+                  child: RaisedButton(
 
-              margin: const EdgeInsets.all(30.0),
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: BoxDecoration (
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10)
+                    shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    side: BorderSide(color: Colors.white)
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ), //             <--- BoxDecoration here
-                  child: Text(
-                    "Estoy listo!!",
-                    style: TextStyle(fontSize: 30.0),
-               ),
+                    onPressed: () {
+                    Navigator.of(context).push(_createRoute());
+                   },
+
+                  textColor: Colors.white , color: Colors.transparent,
+                  child: Text("Estoy listo!",style: TextStyle(fontSize: 50)),
+                ),
+
             );
     }
 
+    Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => IniciarSesionFocusero(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
 
 }
