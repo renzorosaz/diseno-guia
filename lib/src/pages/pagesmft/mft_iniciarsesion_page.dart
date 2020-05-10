@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 
-class IniciarSesionFocusero extends StatelessWidget {
+class IniciarSesionMFT extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
